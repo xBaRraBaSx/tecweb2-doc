@@ -1,0 +1,12 @@
+Datos para GIT
+UserName xBaRraBaSX
+correo	juankasj7@gmail.com
+
+GENERAR TOCKEN CLASICO
+Ingresar a Settings-> Developers Settings
+
+git config --global user.email "juankasj7@gmail.com"
+git config --global user.name "xBaRraBaSx"
+
+iniciar git en la carpeta tecweb2
+git init
