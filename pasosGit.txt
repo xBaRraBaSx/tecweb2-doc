@@ -10,3 +10,10 @@ git config --global user.name "xBaRraBaSx"
 
 iniciar git en la carpeta tecweb2
 git init
+git add pasosGit.txt
+Realizar commit
+git commit -m "first commit"
+Branch
+git branch -M main
+git remote add origin https://github.com/xBaRraBaSx/tecweb2-doc.git
+git push -u origin Main
