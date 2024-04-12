@@ -17,3 +17,81 @@ Branch
 git branch -M main
 git remote add origin https://github.com/xBaRraBaSx/tecweb2-doc.git
 git push -u origin Main
+
+11/04/2024
+Utilizando Docker Compose
+Instalar Plugin
+sudo apt install docker-compose-plugin
+
+crear carpeta docker/nginx
+ingresar a la carpeta cd docker/nginx
+crear el archivo docker-compose.yml
+mousepad docker-compose.yml
+
+version: '3'
+
+services:
+ web:
+  image: nginx
+  volumes:
+   - ./code:/usr/share/nginx/html
+  ports:
+   - "8080:80"
+  environment:
+#   - NGINX_HOST=foobar.com
+   - NGINX_PORT=80
+
+ejecutar docker compose
+docker compose up -d
+
+crear una pagina web
+sudo mousepad code/index.html
+
+Eliminar Contenedor
+docker compose down
+
+<?php
+
+// Show all information, defaults to INFO_ALL
+phpinfo();
+
+// Show just the module information.
+// phpinfo(8) yields identical results.
+phpinfo(INFO_MODULES);
+
+?>
+
+Instalar otro contenedor PHP
+
+crea una carpeta php en docker
+crear el archivo docker-compose.yml
+
+version: '3.8'
+
+services:
+  # Apache and PHP service
+  web:
+    image: php:8-apache
+    container_name: php-apache-container
+    ports:
+      - "8081:80"
+    volumes:
+      - ./html:/var/www/html
+# Define networks
+networks:
+  my-network:
+
+ejecutar docker compose
+docker compose up -d
+
+crear el index.php en la carpeta html que se genera
+<?php
+
+// Show all information, defaults to INFO_ALL
+phpinfo();
+
+// Show just the module information.
+// phpinfo(8) yields identical results.
+phpinfo(INFO_MODULES);
+
+?>
