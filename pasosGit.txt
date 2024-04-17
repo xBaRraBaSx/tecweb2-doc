@@ -95,3 +95,14 @@ phpinfo();
 phpinfo(INFO_MODULES);
 
 ?>
+
+COMANDOS EXTRAS PARA GESTIONAL DOCKER
+Listar de contenedores generados por docker
+docker compose ps
+
+Detener Contenedor> docker compose stop
+Iniciar Contenedor> docker compose start
+cambiar permisos
+sudo chmod 770 html/
+sudo chown root:live html/
+
