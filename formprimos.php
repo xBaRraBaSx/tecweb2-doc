@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario 1</title>
+    <script>
+        function validarNumero() {
+            var texto = document.getElementById("texto").value;
+            if (!/^\d+$/.test(texto) || parseInt(texto) <= 0 || parseInt(texto) > 25) {
+                alert("Por favor, ingrese un número entero positivo.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <?php
@@ -18,32 +28,35 @@
         }
         return true;
     }
+
     function imprimir($num){
         echo "Números primos generados aleatoriamente:<br>";
-            for($i=0;$i<$num;$i++){
-                do{
-                    $random_number = rand(1, 100);
-                }while(!esPrimo($random_number));
-                echo $random_number . "<br>";
+        $numeros_primos = array();
+        $cantidad = 0;
+        while ($cantidad < $num) {
+            $random_number = rand(1, 100);
+            if (esPrimo($random_number) && !in_array($random_number, $numeros_primos)) {
+                $numeros_primos[] = $random_number;
+                $cantidad++;
             }
-            echo '<a href="form02.php">Volver</a>';
+        }
+        foreach ($numeros_primos as $primo) {
+            echo $primo . "<br>";
+        }
+        echo '<a href="formprimos.php">Volver</a>';
     }
+
     if(isset($_POST['texto'])){
         $texto = $_POST['texto'];
         $num = intval($texto);
-        if($num >= 1 && $num <= 9) {
-            imprimir($num);
-        } else {
-            echo "<script>window.location.href = 'form02.php';</script>";
-        }
-    }else{
-        echo '<form method="POST" action="" >
-        <label for="texto"> Introduce un texto</label>
+        imprimir($num);
+    } else {
+        echo '<form method="POST" action="" onsubmit="return validarNumero();">
+        <label for="texto"> Introduce un número entero positivo</label>
         <input type="text" id="texto" name="texto">
         <button type="submit">ENVIAR</button>
     </form>';
     }
     ?>
-    
 </body>
 </html>
