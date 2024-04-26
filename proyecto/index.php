@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Tela incial</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
-       <div style="text-align: center">
-           <h1 class="text-primary">Sistema Web - 00</h1>
-           <FIELDSET class="jumbotron">
-            
-            <form class="form-inline" method="post" action="controllers/autenticar.php"> 
-       			usuario: <br>
-                        <input class="form-control" type="text" name="usuario" required=""> <br> <br>
-       			senha: <br>
-                        <input class="form-control" type="password" name="senha" required=> <br> <br>
-                        <input class="btn btn-primary" type="submit" name="entrar">      			
-       		</form>
-               <br/>
-               <img class="img-responsive center-block" src="php-logo-2.png" alt="" width="250px"> 
-       	</FIELDSET>
-           <span class="text-muted">&COPY; copyrigth 2020 - todos os direitos reservados - prof Anderson </span>
-    
-       </div>
-    </body>
+<html lang="es"> <!-- Agrega el atributo lang="es" -->
+<head>
+    <meta charset="UTF-8">
+    <title>Tela inicial</title>
+    <!-- Enlace a las hojas de estilo de Bootstrap desde su URL -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5"> <!-- Agrega la clase container y el margen superior -->
+        <div class="text-center">
+            <!-- Encabezado personalizado -->
+            <h1 class="text-primary">Sistema Web - 00</h1> <!-- Cambia el color del encabezado -->
+            <div class="jumbotron">
+                <form class="mt-4" method="post" action="controllers/autenticar.php"> <!-- Ajusta el margen superior del formulario -->
+                    <div class="form-group">
+                        <label for="usuario">Usuario:</label>
+                        <input class="form-control" type="text" id="usuario" name="usuario" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="senha">Contraseña:</label>
+                        <input class="form-control" type="password" id="senha" name="senha" required>
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit" name="entrar">Login</button> <!-- Ajusta el botón para que ocupe todo el ancho -->
+                </form>
+                <br>
+                <img class="img-fluid" src="php-logo-2.png" alt="PHP Logo" width="250px">
+            </div>
+        </div>
+    </div>
+</body>
 </html>

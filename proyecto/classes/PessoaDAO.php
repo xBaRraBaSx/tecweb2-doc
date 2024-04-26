@@ -7,7 +7,7 @@ class PessoaDAO extends Pessoa {
 //atributo
     private $tabela = "pessoa";
 
-    //metodo inserir -> inserer um registro na tabela  
+    //Método Insertar - inserta un nuevo registro en la BD 
     public function inserir(Pessoa $pessoa) {
         $sql = "INSERT INTO $this->tabela
                 (nome, sobrenome, data_nascimento, genero, estado_civil)
@@ -21,7 +21,7 @@ class PessoaDAO extends Pessoa {
         return $stmt->execute();
     }
 
-    //metodo atualizar atualiza um registro da tabela 
+    //Método Actualizar - actualiza un registro en la BD
     public function atualizar($pessoa) {
         $sql = "UPDATE $this->tabela SET nome = ?, sobrenome = ?, data_nascimento = ?,
                 genero = ?, estado_civil = ? WHERE ID = ?";
@@ -36,6 +36,7 @@ class PessoaDAO extends Pessoa {
         return $stmt->execute();
     }
 
+    //Método Listar - lista todos los registro de la tabla Personas
     public function listarTudo() {
         $sql = "select * from  $this->tabela";
         $stmt = Pessoa::preparaSQL($sql);
@@ -43,7 +44,7 @@ class PessoaDAO extends Pessoa {
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    //metodo excluir ->  EXCLUII REGISTRO DA TABELA 
+    //Método Eliminar - Borra un registro de la BD
 
     public function excluir(Pessoa $pessoa) {
         $sql = "delete from $this->tabela where id = ?";
@@ -52,7 +53,7 @@ class PessoaDAO extends Pessoa {
         return $stmt->execute();
     }
 
-    //metodo listar -> seleciona um registro 
+    //metodo listar -> seleciona un registro 
     public function listar(Pessoa $pessoa) {
         $sql = "SELECT * FROM $this->tabela where id = ?";
         $stmt = Pessoa::preparaSQL($sql);

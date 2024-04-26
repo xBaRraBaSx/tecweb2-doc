@@ -5,7 +5,7 @@ class LoginDAO extends Login {
     //atributo
     private $tabela = "login";
     
-    //metodos logar -> verefica a autenticação de usuario no sistema
+    //Método Login - verifica la autenticación del usuario en el sistema
     public function logar(Login $login) {
         $sql = "SELECT * FROM $this->tabela WHERE  usuario = ? AND senha = ? ";
         $stmt = Login::preparaSQL($sql);
@@ -21,7 +21,7 @@ class LoginDAO extends Login {
             return false;
         }
     }
-    //metodo estatico deslofar -> verifica se existe sesa oe destrio sessao 
+    //Método Logout - verifica si existe el login y lo destruye
     public static function deslogar(){
         if($_SESSION["autenticado"]){
             session_unset();

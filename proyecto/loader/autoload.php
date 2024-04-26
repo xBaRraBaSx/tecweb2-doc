@@ -1,6 +1,6 @@
 <?php
 
-//carregamento automatico das classes 
+//carga automatica de las clases 
 
 function meuLoader($classe) {
     $extensao = spl_autoload_extensions();

@@ -1,66 +1,74 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Edição de Registros</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
-        <div style="text-align: center">
-            <a href="listar.php"> VOLTAR <a/>
-            
-            <h3>Edição de Pessoas</h3>
-            <?php 
-                //Recuperar o valor do parâmetro 'id' da URL
-                $id = filter_input(INPUT_GET, "id");
-                //Inclui o arquivo de conexão
-                include_once '../loader/autoload.php';
-                //instancia o obejto 
-                $pDAO = new PessoaDAO();
-                $p = new Pessoa();
-                //passsar valor do id para o atributo 
-                $p->setId($id);
-                //atibui resultado a variavel
-                $obj = $pDAO->listar($p);
-                
-            ?>
+<head>
+    <meta charset="UTF-8">
+    <title>Edición de Registros</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="container mt-5">
+        <a href="listar.php" class="btn btn-primary">VOLVER</a>
+        
+        <h3>Edición de Personas</h3>
+        <?php 
+            // Recuperar el valor del parámetro 'id' de la URL
+            $id = filter_input(INPUT_GET, "id");
+            // Incluir archivo de conexión
+            include_once '../loader/autoload.php';
+            // Instancia del objeto 
+            $pDAO = new PessoaDAO();
+            $p = new Pessoa();
+            // Enviar el valor del ID como atributo al objeto 
+            $p->setId($id);
+            // Asignar resultado a la variable
+            $obj = $pDAO->listar($p);
+        ?>
+        <div class="form-group">
             <form method="post" action="../controllers/editar.php">
-                Nome <br>
-                <input type="text" name="nome" required value="<?=$obj->nome?>"> <br><br>
-                Sobrenome <br>
-                <input type="text" name="sobrenome" required value="<?=$obj->sobrenome?>"> <br><br>
-                Data Nascimento <br>
-                <input type="date" name="data" required value="<?=$obj->data_nascimento?>"> <br><br>
-                Gênero <br>
-                <select name="genero">
+                Nombre <br>
+                <input type="text" class="form-control" name="nome" required value="<?=$obj->nome?>"> <br><br>
+                Sobrenombre <br>
+                <input type="text" class="form-control" name="sobrenome" required value="<?=$obj->sobrenome?>"> <br><br>
+                Fecha de Nacimiento <br>
+                <input type="date" class="form-control" name="data" required value="<?=$obj->data_nascimento?>"> <br><br>
+                Género <br>
+                <select class="form-control" name="genero">
                     <?php
                     if($obj->genero == "M"){
-                        print "<option selected value='M'>Masculino</option>";
-                        print "<option value='F'>Feminino</option>";
+                        echo "<option selected value='M'>Masculino</option>";
+                        echo "<option value='F'>Femenino</option>";
                     }else{
-                        print "<option value='M'>Masculino</option>";
-                        print "<option selected value='F'>Feminino</option>";
+                        echo "<option value='M'>Masculino</option>";
+                        echo "<option selected value='F'>Femenino</option>";
                     }
                     ?>
                 </select> <br><br>
                 Estado Civil <br>
-                <input type="radio" name="ec" value="Solteiro(a)"
-                       <?=($obj->estado_civil == "Solteiro(a)") ? "checked" : ""?> > Solteiro(a)
-                
-                <input type="radio" name="ec" value="Casado(a)"
-                       <?=($obj->estado_civil == "Casado(a)") ? "checked" : ""?> > Casado(a)
-                
-                <input type="radio" name="ec" value="Divorciado(a)"
-                       <?=($obj->estado_civil == "Divorciado(a)") ? "checked" : ""?> > Divorciado(a)
-                
-                <input type="radio" name="ec" value="Viúvo(a)"
-                       <?=($obj->estado_civil == "Viúvo(a)") ? "checked" : ""?> > Viúvo(a) <br><br>
-                
-                <input TYPE="hidden" name ="id" value="<?=$obj->id?>"> 
-                <input type="submit" value="Editar"
-                       onclick="return confirm ('deseja editar o registro?')">                
-            </form>            
-        </div>
-    </body>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="ec" value="Soltero(a)"
+                           <?=($obj->estado_civil == "Soltero(a)") ? "checked" : ""?> >
+                    <label class="form-check-label">Soltero(a)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="ec" value="Casado(a)"
+                           <?=($obj->estado_civil == "Casado(a)") ? "checked" : ""?> >
+                    <label class="form-check-label">Casado(a)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="ec" value="Divorciado(a)"
+                           <?=($obj->estado_civil == "Divorciado(a)") ? "checked" : ""?> >
+                    <label class="form-check-label">Divorciado(a)</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="ec" value="Viudo(a)"
+                           <?=($obj->estado_civil == "Viudo(a)") ? "checked" : ""?> >
+                    <label class="form-check-label">Viudo(a)</label>
+                </div>
+                <input type="hidden" name="id" value="<?=$obj->id?>">
+                <input type="submit" class="btn btn-primary" value="Editar" onclick="return confirm('¿Desea editar el registro?')">                
+            </form>
+        </div>            
+    </div>
+</body>
 </html>

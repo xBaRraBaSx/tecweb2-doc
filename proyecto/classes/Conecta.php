@@ -5,11 +5,11 @@ class Conecta {
     //atributo 
     private static $conn;
 
-    //metodo que realiza a conexao e retorna essa conexao que foi realizada 
+    //Método que realiza la conexión y la retorna 
     private static function pegarConexao() {
-        //verefica se o valor é nulo 
+        //verifica si la conexión es nula 
         if (self::$conn == null) {
-            //tratamento de erro (exceção )
+            //Tratamiento de Errror
             try {
                 self::$conn = new PDO("mysql:host=mysql;dbname=pdo_integrado", "root", "root");
             } catch (Exception $ex) {
@@ -19,7 +19,7 @@ class Conecta {
         return self::$conn;
     }
 
-    //metodo que prepara o ssql na conexao retornada
+    //Método que prepara SQL para la conexión
     protected static function preparaSQL($sql) {
         return self::pegarConexao()->prepare($sql);
     }

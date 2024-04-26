@@ -2,12 +2,12 @@
 
 include_once '../loader/autoload.php';
 
-//instancia o objeto 
+//instancia objetos
 
 $p = new Pessoa();
 $pDAO = new PessoaDAO();
 
-//pega os valores dos campos com o metodo filter input()
+//recupera los valores del INPUT_POST y los almacena en variables
 $nome = filter_input(INPUT_POST, "nome");
 $sobrenome = filter_input(INPUT_POST, "sobrenome");
 $data_nascimento = filter_input(INPUT_POST, "data");
@@ -15,7 +15,7 @@ $genero = filter_input(INPUT_POST, "genero");
 $estado_civil = filter_input(INPUT_POST, "ec");
 $id           = filter_input(INPUT_POST, "id");
 
-//passando valores para os atributos do objetos $p 
+//envía los valores como atributos del objeto $p 
 
 $p->setNome($nome);
 $p->setSobrenome($sobrenome);
@@ -25,12 +25,11 @@ $p->setEstado_civil($estado_civil);
 $p->setId($id);
 
 
-//verefica ser o merodo enserir returna true
-//recuperando valores dos atributos 
+//verifica si el método editar retorna True
 
 if ($pDAO->atualizar($p)) {
-    print" <script> alert('Registro editado com sucesso');location='../views/listar.php' </script> <br/>";
+    print" <script> alert('Registro editado satisfactoriamente');location='../views/listar.php' </script> <br/>";
 } else {
-    print "errro ao editar registro <br/>";
+    print "errro al editar registro <br/>";
 }
 

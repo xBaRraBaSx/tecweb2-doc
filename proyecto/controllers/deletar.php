@@ -1,23 +1,23 @@
 <?php
 
-//inclui as classes
+//incluye las classes
 include_once '../loader/autoload.php';
 
-//instancia  objetos
+//instancia objetos
 $p = new Pessoa();
 $pDAO = new PessoaDAO();
 
-//PAGA O VLAOR DA PAAMETRO 'ID ' DA URL  
+//recupera el valor id del POST en una variable 
 
 $id = filter_input(INPUT_GET, "id");
 
-//passa valor do id para atributo 
+//envía el valor id como atributo
 
 $p->setId($id);
 
-//verfica se o metodo excluir retorna true
+//verifica si el método Eliminar retorna Ture
 if ($pDAO->excluir($p)) {
-    print" <script> alert('Registro excludo com sucesso');location='../views/listar.php' </script> <br/>";
+    print" <script> alert('Registro eliminado satisfactoriamente');location='../views/listar.php' </script> <br/>";
 }else{
-    print "erro ao  excluir registro";
+    print "error al eliminar el registro";
 }

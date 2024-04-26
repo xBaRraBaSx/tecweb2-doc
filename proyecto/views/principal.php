@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <?php 
     session_start();
-    //verefica se usuario nao esta autenticado 
+    // Verifica si el usuario no está autenticado 
     if(!$_SESSION["autenticado"]){
-       print "<script>alert('sem permisão de acesso. Efetue o Login'); location=
-           'index.php'</script>";
+       print "<script>alert('Acceso no autorizado. Realice el Login'); location='index.php'</script>";
     }
     if(filter_input(INPUT_GET, "sair") == "ok"){
         include_once 'loader/autoload.php';
         LoginDAO::deslogar();
     }
 ?>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Tela principal</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
-        <div style="text-align: center" class="container">
-            <span style="font-weight: bold" style="font-size: 14pt"><?= $_SESSION["usuario"] ?></span>,
-        Bem vindo(a)ao nosso sistema web
-        <hr/>
-        <h2 class="text-muted"> Menu principal <h2>
-                <a href= 'form_inserir.php' ><button class="btn btn-block glyphicon glyphicon-plus"> INSERIR |</a>
-                <a href= 'listar.php'> LISTAR |</a>
-                <a href="../index.php" onclick="return confirm ('deseja sair do sistema?')"> SAIR |</a>
-                 
-         </div>       
-    </body>
+<html lang="es"> <!-- Agrega el atributo lang="es" -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla principal</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <span class="welcome-message"><?= $_SESSION["usuario"] ?></span>,
+        Bienvenido(a) a nuestro sistema web
+        <hr>
+        <h2 class="text-muted menu-title">Menu principal</h2>
+        <div class="menu-options">
+            <a href="form_inserir.php" class="btn btn-block btn-primary">INSERTAR</a>
+            <a href="listar.php" class="btn btn-block btn-primary">LISTAR</a>
+            <a href="../index.php" onclick="return confirm('¿Deseja salir del sistema?')" class="btn btn-block btn-danger">SALIR</a>
+        </div>
+    </div>
+
+</body>
 </html>
